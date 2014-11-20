@@ -8,11 +8,11 @@ game.PlayerEntity = me.Entity.extend({
                 width: 128,
                 height: 128,
                 getShape: function() {
-                    return (new me.Rect(0, 0, 128, 128)).toPolygon();
+                    return (new me.Rect(0, 0, 30, 128)).toPolygon();
                 }
             }]);
 
-        this.renderable.addAnimation("idle", [4]);
+        this.renderable.addAnimation("idle", [3]);
         this.renderable.addAnimation("smallWalk", [9, 10, 11, 12, 13], 80);
 
         this.renderable.setCurrentAnimation("idle");
@@ -64,8 +64,8 @@ game.LevelTrigger = me.Entity.extend({
         this.level = settings.level;
     },
     onCollision: function() {
-//     this.body.setCollisionMask(me.collision.types.NO_OBJECT);
-//     me.levelDirector.loadLevel(this.level);
+     this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+     me.levelDirector.loadLevel(this.level);
     }
 
 });
