@@ -31,7 +31,7 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x = 0;
         }
 
-        if (me.input.isKeyPressed("up")) {
+        if (me.input.isKeyPressed("space")) {
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
         }
 
@@ -64,8 +64,8 @@ game.LevelTrigger = me.Entity.extend({
         this.level = settings.level;
     },
     onCollision: function() {
-     this.body.setCollisionMask(me.collision.types.NO_OBJECT);
-     me.levelDirector.loadLevel(this.level);
+//     this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+//     me.levelDirector.loadLevel(this.level);
     }
 
 });
