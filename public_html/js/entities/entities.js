@@ -64,8 +64,8 @@ game.LevelTrigger = me.Entity.extend({
         this.level = settings.level;
     },
     onCollision: function() {
-//     this.body.setCollisionMask(me.collision.types.NO_OBJECT);
-//     me.levelDirector.loadLevel(this.level);
+     this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+     me.levelDirector.loadLevel(this.level);
     }
 
 });

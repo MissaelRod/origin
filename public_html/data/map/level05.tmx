@@ -32,7 +32,7 @@
   </data>
  </layer>
  <objectgroup name="trigger*entities">
-  <object name="levelTrigger" x="983" y="941" width="65" height="109"/>
+  <object name="levelTrigger" x="979" y="940" width="65" height="109"/>
   <object name="levelTrigger" x="1049" y="20" width="62" height="104">
    <properties>
     <property name="level" value=""/>
