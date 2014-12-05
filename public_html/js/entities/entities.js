@@ -2,7 +2,7 @@
 game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, 'init', [x, y, {
-                image: "mario",
+                image: "sprite",
                 spritewidth: "128",
                 spiteheight: "128",
                 width: 128,
@@ -13,16 +13,20 @@ game.PlayerEntity = me.Entity.extend({
             }]);
 
         this.renderable.addAnimation("idle", [3]);
-        this.renderable.addAnimation("smallWalk", [9, 10, 11, 12, 13], 80);
+        //the last number says we switch betwwen pictures every 80 milliseconds
+        this.renderable.addAnimation("smallWalk", [88, 89, 90, 91, 92, 93, 94, 95, 96],80);
 
         this.renderable.setCurrentAnimation("idle");
+        //sets the speed we go on the x axis (the first number) and y axis(second number)
 
         this.body.setVelocity(5, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
     update: function(delta) {
-
+       //checks if the right key is pressed and if it is, exxecute the following statement
         if (me.input.isKeyPressed("right")) {
+            //sets the position of mario on the x axis by adding the x value from the setVelocity times the timer.tick
+            //me.timer.tick uses the time since last animation to make the distance traveled smooth
             this.body.vel.x += this.body.accel.x * me.timer.tick;
         }
         else if (me.input.isKeyPressed("left")) {
@@ -60,6 +64,8 @@ game.PlayerEntity = me.Entity.extend({
 game.LevelTrigger = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
+        //if something collides with this object then we call the onCollision function and pass it
+        //a hidden parameter of this object
         this.body.onCollision = this.onCollision.bind(this);
         this.level = settings.level;
         this.xSpawn = settings.xSpawn;
@@ -73,6 +79,7 @@ game.LevelTrigger = me.Entity.extend({
     }
     
 });
+//adds the animation for the BadGuy to move back and forth
 
 game.BadGuy = me.Entity.extend({
     init: function(x, y, settings) {
@@ -116,7 +123,7 @@ game.BadGuy = me.Entity.extend({
                 this.walkLeft = true;
             }
             this.flipX(!this.walkLeft);
-            this.body.vel.x += (this.walkLeft) ? -this.body.accel.x *me.time.tick : this.body.accel.x *me.time.tick;
+            this.body.vel.x += (this.walkLeft) ? -this.body.accel.x *me.timer.tick : this.body.accel.x *me.timer.tick;
 
         } else {
             me.game.world.removeChild(this);

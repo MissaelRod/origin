@@ -5,7 +5,8 @@ game.resources = [
      */
     {name: "background-tiles", type: "image", src: "data/img/background-tiles.png"},
     {name: "meta-tiles", type: "image", src: "data/img/meta-tiles.png"},
-    {name: "mario", type: "image", src: "data/img/player1.png"},
+    //adds the mario charicter to the game
+    {name: "sprite", type: "image", src: "data/img/sprite image.png"},
     {name: "title-screen", type: "image", src: "data/img/title-screen.png"},
     {name: "slime", type: "image", src: "data/img/slime-spritesheet.png"},
     
@@ -19,8 +20,10 @@ game.resources = [
      * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
      * {name: "example01", type: "tmx", src: "data/map/example01.json"},
      */
+    //adds my three levels to my game
     {name: "level04", type: "tmx", src: "data/map/level04.tmx"},
-    {name: "level05", type: "tmx", src: "data/map/level05.tmx"}
+    {name: "level05", type: "tmx", src: "data/map/level05.tmx"},
+    {name: "level06", type: "tmx", src: "data/map/level06.tmx"}
 
     /* Background music. 
      * @example
