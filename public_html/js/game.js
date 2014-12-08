@@ -35,9 +35,10 @@ var game = {
     },
     // Run on game resources loaded.
     "loaded": function() {
-        me.pool.register("sprite", game.PlayerEntity, true);
+        me.pool.register("mario", game.PlayerEntity, true);
         //enables the BadGuy in my game 
         me.pool.register("BadGuy", game.BadGuy);
+        me.pool.register("mushroom", game.Mushroom);
 
         me.pool.register("levelTrigger", game.LevelTrigger);
 

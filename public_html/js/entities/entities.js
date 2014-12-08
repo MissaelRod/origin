@@ -2,19 +2,19 @@
 game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, 'init', [x, y, {
-                image: "sprite",
-                spritewidth: "128",
-                spiteheight: "128",
-                width: 128,
-                height: 128,
+                image: "mario",
+                spritewidth: "64",
+                spiteheight: "64",
+                width: 64,
+                height: 64,
                 getShape: function() {
-                    return (new me.Rect(0, 0, 30, 128)).toPolygon();
+                    return (new me.Rect(0, 0, 30,64 )).toPolygon();
                 }
             }]);
 
-        this.renderable.addAnimation("idle", [3]);
+        this.renderable.addAnimation("idle", [73 ]);
         //the last number says we switch betwwen pictures every 80 milliseconds
-        this.renderable.addAnimation("smallWalk", [88, 89, 90, 91, 92, 93, 94, 95, 96],80);
+        this.renderable.addAnimation("smallWalk", [265, 266, 267, 268, 269, 270, 271, 272, 273], 80);
 
         this.renderable.setCurrentAnimation("idle");
         //sets the speed we go on the x axis (the first number) and y axis(second number)
@@ -133,9 +133,25 @@ game.BadGuy = me.Entity.extend({
         this._super(me.Entity, "update", [delta]);
         return true;
     },
-    collideHandler: function(){
+    collideHandler: function(response){
+        var ydif = this.pos.y - response.b.pos.y;
+        console.log(ydif);
         
+        
+        if (response.b.type === 'badguy') {
+            if (ydif <= -115) {
+             response.b.alive = false;
+            } else {
+
+                me.state.change(me.state.menu);
+            }
+        }
     }
-    
+
 });
 
+game.Mushroom = me.Entity.extend({
+      init: function(x, y, settings){
+            
+        }
+    });

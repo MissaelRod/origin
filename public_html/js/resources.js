@@ -6,9 +6,10 @@ game.resources = [
     {name: "background-tiles", type: "image", src: "data/img/background-tiles.png"},
     {name: "meta-tiles", type: "image", src: "data/img/meta-tiles.png"},
     //adds the mario charicter to the game
-    {name: "sprite", type: "image", src: "data/img/sprite image.png"},
+    {name: "mario", type: "image", src: "data/img/sprite image.png"},
     {name: "title-screen", type: "image", src: "data/img/title-screen.png"},
     {name: "slime", type: "image", src: "data/img/slime-spritesheet.png"},
+    {name: "mushroom", type: "image", src: "data/img/mushroom.png"},
     
     /* Atlases 
      * @example
