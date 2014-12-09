@@ -12,9 +12,9 @@ game.PlayerEntity = me.Entity.extend({
                 }
             }]);
 
-        this.renderable.addAnimation("idle", [73 ]);
+        this.renderable.addAnimation("idle", [73]);
         //the last number says we switch betwwen pictures every 80 milliseconds
-        this.renderable.addAnimation("smallWalk", [265, 266, 267, 268, 269, 270, 271, 272, 273], 80);
+        this.renderable.addAnimation("smallWalk", [265, 266, 268, 269, 270, 271, 272, 273], 80);
 
         this.renderable.setCurrentAnimation("idle");
         //sets the speed we go on the x axis (the first number) and y axis(second number)
@@ -152,6 +152,17 @@ game.BadGuy = me.Entity.extend({
 
 game.Mushroom = me.Entity.extend({
       init: function(x, y, settings){
-            
+                this._super(me.Entity, 'init', [x, y, {
+                image: "mushroom",
+                spritewidth: "64",
+                spiteheight: "28",
+                width: 64,
+                height: 64,
+                getShape: function() {
+                    return (new me.Rect(0, 0, 64, 64)).toPolygon();
+                }
+            }]);
+//        this.collision.check(this);
+        this.type="mushroom";
         }
     });
