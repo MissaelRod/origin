@@ -14,11 +14,11 @@ game.PlayerEntity = me.Entity.extend({
 
         this.renderable.addAnimation("idle", [73]);
         //the last number says we switch betwwen pictures every 80 milliseconds
-        this.renderable.addAnimation("smallWalk", [265, 266, 268, 269, 270, 271, 272, 273], 80);
+        this.renderable.addAnimation("smallWalk", [265, 266, 268, 269, 270, 271, 272], 80);
 
         this.renderable.setCurrentAnimation("idle");
         //sets the speed we go on the x axis (the first number) and y axis(second number)
-
+        this.big = false;
         this.body.setVelocity(5, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
@@ -34,7 +34,7 @@ game.PlayerEntity = me.Entity.extend({
         } else {
             this.body.vel.x = 0;
         }
-
+//when I press a certain key the given code blow will work 
         if (me.input.isKeyPressed("space")) {
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
         }
@@ -56,11 +56,26 @@ game.PlayerEntity = me.Entity.extend({
     },
     collideHandler: function(response) {
 
+        var ydif = this.pos.y - response.b.pos.y;
+        console.log(ydif);
+        
+        
+        if (response.b.type === 'badguy') {
+            if (ydif <= -51){
+             response.b.alive = false;
+            } else {
+
+                me.state.change(me.state.MENU);
+            }
+        }else if(response.b.type === 'mushroom'){
+            this.big = true;
+            console.log("Big!");
+        }
     }
 
 });
 
-
+//allows me to go to the door(level trigger)
 game.LevelTrigger = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
@@ -108,8 +123,8 @@ game.BadGuy = me.Entity.extend({
         this.type = "badguy";
         
           this.renderable.addAnimation("run", [0, 1, 2], 80);
-        
-        this.body.setVelocity(4, 6);
+        //the set speed for the velocity of the bad guy
+        this.body.setVelocity(1, 6);
         
     },
     update: function(delta){
@@ -134,22 +149,10 @@ game.BadGuy = me.Entity.extend({
         return true;
     },
     collideHandler: function(response){
-        var ydif = this.pos.y - response.b.pos.y;
-        console.log(ydif);
-        
-        
-        if (response.b.type === 'badguy') {
-            if (ydif <= -115) {
-             response.b.alive = false;
-            } else {
-
-                me.state.change(me.state.menu);
-            }
-        }
     }
 
 });
-
+//adds the mushroom to the map or level
 game.Mushroom = me.Entity.extend({
       init: function(x, y, settings){
                 this._super(me.Entity, 'init', [x, y, {

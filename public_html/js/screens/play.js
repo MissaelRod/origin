@@ -10,7 +10,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
         var player = me.pool.pull("mario", 0, 420, {});
         me.game.world.addChild(player, 3);
-
+        //codes for the keys to move
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.SPACE, "space");
@@ -26,7 +26,7 @@ game.PlayScreen = me.ScreenObject.extend({
         // remove the HUD from the game world
         me.game.world.removeChild(this.HUD);
     },
-    
+    //resets the player on the next level
         resetPlayer: function (x, y){
                 var player = me.pool.pull("mario", x, y, {});
                 me.game.world.addChild(player, 5);
