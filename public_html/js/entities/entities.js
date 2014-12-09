@@ -23,6 +23,7 @@ game.PlayerEntity = me.Entity.extend({
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
     update: function(delta) {
+        console.log(this.pos.x + " " + this.pos.y);
        //checks if the right key is pressed and if it is, exxecute the following statement
         if (me.input.isKeyPressed("right")) {
             //sets the position of mario on the x axis by adding the x value from the setVelocity times the timer.tick
@@ -124,7 +125,7 @@ game.BadGuy = me.Entity.extend({
         
           this.renderable.addAnimation("run", [0, 1, 2], 80);
         //the set speed for the velocity of the bad guy
-        this.body.setVelocity(1, 6);
+        this.body.setVelocity(2, 6);
         
     },
     update: function(delta){
@@ -167,5 +168,6 @@ game.Mushroom = me.Entity.extend({
             }]);
 //        this.collision.check(this);
         this.type="mushroom";
+//         me.game.world.removeChild(response.b);
         }
     });
